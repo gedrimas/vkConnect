@@ -267,7 +267,7 @@ chunkButtons(vkMethods)
       <ResultWrapper>
         <Form style={{ width: '770px' }}>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label>Params in JSON</Form.Label>
+            <Form.Label>Params in JSON (<a href="https://vk.com/dev/vk_connect_events">see VK Connect</a>)</Form.Label>
             <Form.Control 
               as="textarea" 
               rows="3" 
