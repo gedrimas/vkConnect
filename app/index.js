@@ -9,6 +9,7 @@ import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 
 import {vkMethods, vkMethodSetter} from './assets/vkMeth'
+import { vkJsonParams } from './assets/vkJsonParams'
 
 
 const Wrapper = styled.div`
@@ -31,8 +32,9 @@ connect.send("VKWebAppInit", {})
 const App = () => {
         
 const [vkRes, setvkRes] = useState('vk')
-const [vkMethodType, setVkMethodType] = useState('0')
+const [vkMethodType, setVkMethodType] = useState('')
 const [params, setParams] = useState({})
+const [inputValue, setInputValue] = useState('')
 
 useEffect(() => {
   let vkEv = {}
@@ -84,6 +86,15 @@ const parseVkResponse = (vkResponse) => {
   return vkResInJSX
 }
 
+const inputHandler = (input) => {
+  setInputValue(input)
+  setParams(JSON.parse(input))
+}
+
+const sendJSONtoVk = () => {
+  connect.send(vkMethodType, params)
+}
+
 const chunkedArr = []
 const chunkButtons = ([a, b, c, ...rest]) => {
   if(a) {
@@ -93,7 +104,10 @@ const chunkButtons = ([a, b, c, ...rest]) => {
 }
 
 chunkButtons(vkMethods)
+console.log('inputValue', inputValue)
+console.log('vkMethodType', vkMethodType)
 
+//console.log('params', params)
   return(
     <Wrapper>
       <ButtonsWrapper>
@@ -104,10 +118,10 @@ chunkButtons(vkMethods)
         {
           chunkedArr.map(itm => (
             <ButtonGroup size="sm" className="mt-3">
-              <Button onClick={() => vkMethodSetter(itm[0], params, setVkMethodType, connect)}>{itm[0]}</Button>
-              <Button onClick={() => vkMethodSetter(itm[1], params, setVkMethodType, connect)}>{itm[1]}</Button>
-              <Button onClick={() => vkMethodSetter(itm[2], params, setVkMethodType, connect)}>{itm[2]}</Button>
-              <Button onClick={() => vkMethodSetter(itm[3], params, setVkMethodType, connect)}>{itm[3]}</Button>
+              <Button onClick={() => vkMethodSetter(itm[0], params, setVkMethodType, connect, setInputValue)}>{itm[0]}</Button>
+              <Button onClick={() => vkMethodSetter(itm[1], params, setVkMethodType, connect, setInputValue)}>{itm[1]}</Button>
+              <Button onClick={() => vkMethodSetter(itm[2], params, setVkMethodType, connect, setInputValue)}>{itm[2]}</Button>
+              <Button onClick={() => vkMethodSetter(itm[3], params, setVkMethodType, connect, setInputValue)}>{itm[3]}</Button>
             </ButtonGroup>
           ))
         }  
@@ -116,12 +130,19 @@ chunkButtons(vkMethods)
       <ResultWrapper>
         <Form style={{ width: '770px' }}>
           <Form.Group controlId="exampleForm.ControlTextarea1">
+            {
+              vkMethodType ? <Button variant="outline-primary" onClick={() => sendJSONtoVk()}>{vkMethodType}</Button> :
+              <Button variant="outline-danger">VK method is not chosen</Button>
+            }  
+            < br/>
             <Form.Label>Params in JSON (<a href="https://vk.com/dev/vk_connect_events">see VK Connect</a>)</Form.Label>
             <Form.Control 
               as="textarea" 
               rows="3" 
-              placeholder='{"app_id": 4936321, "group_id": 184317159, "scope": "messages"}'
-              onChange={e => setParams(JSON.parse(e.target.value))}
+              //placeholder='{"app_id": 4936321, "group_id": 184317159, "scope": "messages"}'
+              //onChange={e => setParams(JSON.parse(e.target.value))}
+              onChange={e => inputHandler(e.target.value)}
+              value={inputValue}
             />
           </Form.Group>
         </Form>

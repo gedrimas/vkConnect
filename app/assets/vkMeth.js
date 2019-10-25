@@ -1,3 +1,5 @@
+import { vkJsonParams } from './vkJsonParams'
+
 export const vkMethods = [
   'VKWebAppGetUserInfo',
   'VKWebAppGetPhoneNumber',
@@ -36,153 +38,188 @@ export const vkMethods = [
   'VKWebAppStorageGetKeys',
 ]
 
-export const vkMethodSetter = (vkMethodName, params, setVkMethodType, connect) => {
+export const vkMethodSetter = (vkMethodName, params, setVkMethodType, connect, setInputValue) => {
+  console.log('vkMethodName[vkMethodName]', vkJsonParams[vkMethodName])
+  //setInputValue(vkJsonParams[vkMethodName])
   switch(vkMethodName){
     case 'VKWebAppGetUserInfo':
-      connect.send("VKWebAppGetUserInfo", {})
       setVkMethodType('VKWebAppGetUserInfo')
+      setInputValue('{}')
       break
+
     case 'VKWebAppGetPhoneNumber':
-      connect.send('VKWebAppGetPhoneNumber', {})
       setVkMethodType('VKWebAppGetPhoneNumber')
+      setInputValue('{}')
       break
+
     case 'VKWebAppGetEmail':
-      connect.send('VKWebAppGetEmail', {})
       setVkMethodType('VKWebAppGetEmail')
+      setInputValue('{}')
       break
+
     case 'VKWebAppGetGeodata':
-      connect.send("VKWebAppGetGeodata", {})
       setVkMethodType('VKWebAppGetGeodata')
+      setInputValue('{}')
       break
     case 'VKWebAppOpenContacts':
-      connect.send("VKWebAppOpenContacts", {})
       setVkMethodType('VKWebAppOpenContacts')
-      break
-    case 'VKWebAppGetAuthToken':
-      connect.send("VKWebAppGetAuthToken", params)
-      setVkMethodType('VKWebAppGetAuthToken')
+      setInputValue('{}')
       break
 
-      case 'VKWebAppGetAuthToken2':
-        connect.send("VKWebAppGetAuthToken", params)
-        setVkMethodType('VKWebAppGetAuthToken')
-        break
+    case 'VKWebAppGetAuthToken':
+      setVkMethodType('VKWebAppGetAuthToken')
+      setInputValue(vkJsonParams[vkMethodName])
+      break
 
     case 'VKWebAppCallAPIMethod':
-      connect.send("VKWebAppCallAPIMethod", params)
       setVkMethodType('VKWebAppCallAPIMethod')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppShare':
-      connect.send("VKWebAppShare", params)
       setVkMethodType('VKWebAppShare')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppShowWallPostBox':
-      connect.send("VKWebAppShowWallPostBox", params)
       setVkMethodType('VKWebAppShowWallPostBox')
+      setInputValue(vkJsonParams[vkMethodName])      
       break
+
     case 'VKWebAppGetClientVersion':
-      connect.send("VKWebAppGetClientVersion", {})
       setVkMethodType('VKWebAppGetClientVersion')
+      setInputValue('{}')
       break
+    
     case 'VKWebAppOpenPayForm':
-      connect.send("VKWebAppOpenPayForm", params)
       setVkMethodType('VKWebAppOpenPayForm')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppAllowNotifications':
-      connect.send("VKWebAppAllowNotifications", {})
       setVkMethodType('VKWebAppAllowNotifications')
+      setInputValue('{}')
       break
+    
     case 'VKWebAppSetLocation':
-      connect.send("VKWebAppSetLocation", params)
       setVkMethodType('VKWebAppSetLocation')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppAllowMessagesFromGroup':
-      connect.send("VKWebAppAllowMessagesFromGroup", params)
       setVkMethodType('VKWebAppAllowMessagesFromGroup')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppJoinGroup':
-      connect.send("VKWebAppJoinGroup", params)
       setVkMethodType('VKWebAppJoinGroup')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppOpenQR':
       connect.send("VKWebAppOpenQR")
       setVkMethodType('VKWebAppOpenQR')
+      setInputValue('{}')
       break
+
     case 'VKWebAppOpenApp':
-      connect.send("VKWebAppOpenApp", params)
       setVkMethodType('VKWebAppOpenApp')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppSetViewSettings':
-      connect.send("VKWebAppSetViewSettings", params)
       setVkMethodType('VKWebAppSetViewSettings')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppScroll':
-      connect.send("VKWebAppScroll", params)
       setVkMethodType('VKWebAppScroll')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppResizeWindow':
-      connect.send("VKWebAppResizeWindow", params)
       setVkMethodType('VKWebAppResizeWindow')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppGetPersonalCard':
-      connect.send("VKWebAppGetPersonalCard", params)
       setVkMethodType('VKWebAppGetPersonalCard')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppGetFriends':
-      connect.send("VKWebAppGetFriends", {})
       setVkMethodType('VKWebAppGetFriends')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppFlashGetInfo':
-      connect.send("VKWebAppFlashGetInfo", {})
       setVkMethodType('VKWebAppFlashGetInfo')
+      setInputValue('{}')
       break
+
     case 'VKWebAppFlashSetLevel':
-      connect.send("VKWebAppFlashSetLevel", params)
       setVkMethodType('VKWebAppFlashSetLevel')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppAddToCommunity':
-      connect.send("VKWebAppAddToCommunity", {})
       setVkMethodType('VKWebAppAddToCommunity')
+      setInputValue('{}')
       break
+
     case 'VKWebAppGetCommunityAuthToken':
-      connect.send("VKWebAppGetCommunityAuthToken", params)
       setVkMethodType('VKWebAppGetCommunityAuthToken')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppAddToFavorites':
-      connect.send("VKWebAppAddToFavorites", {})
       setVkMethodType('VKWebAppAddToFavorites')
+      setInputValue('{}')
       break
+
     case 'VKWebAppTapticNotificationOccurred':
-      connect.send("VKWebAppTapticNotificationOccurred", params)
       setVkMethodType('VKWebAppTapticNotificationOccurred')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppTapticSelectionChanged':
-      connect.send("VKWebAppTapticSelectionChanged", {})
       setVkMethodType('VKWebAppTapticSelectionChanged')
+      setInputValue('{}')
       break
+      
     case 'VKWebAppTapticImpactOccurred':
-      connect.send("VKWebAppTapticImpactOccurred", params)
       setVkMethodType('VKWebAppTapticImpactOccurred')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppShowImages':
-        connect.send("VKWebAppShowImages", params)
       setVkMethodType('VKWebAppShowImages')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppSendPayload':
-      connect.send("VKWebAppSendPayload", params)
       setVkMethodType('VKWebAppSendPayload')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppStorageGet':
-      connect.send("VKWebAppStorageGet", params)
       setVkMethodType('VKWebAppStorageGet')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppStorageSet':
-      connect.send("VKWebAppStorageSet", params)
       setVkMethodType('VKWebAppStorageSet')
+      setInputValue(vkJsonParams[vkMethodName])
       break
+
     case 'VKWebAppStorageGetKeys':
-      connect.send("VKWebAppStorageGetKeys", params)
       setVkMethodType('VKWebAppStorageGetKeys')
-      break  
+      setInputValue(vkJsonParams[vkMethodName])
+      break
+    
+    case 'VKWebAppShowCommunityWidgetPreviewBox':
+      setVkMethodType('VKWebAppShowCommunityWidgetPreviewBox')
+      setInputValue(vkJsonParams[vkMethodName])
+      break
   }
 }
